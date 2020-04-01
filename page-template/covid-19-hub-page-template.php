@@ -4,8 +4,6 @@
  */
 $sidebar = hummingbird_get_option( 'hummingbird_sidebar', 'right' );
 $column_classes = hummingbird_column_classes( $sidebar );
-$wrapper_class = 'posts-wrapper';
-$wrapper_class .= hummingbird_is_layout( 'grids' ) ? ' grid-wrapper' : '';
 $image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID),'full' )[0];
 $link = get_field('link');
 $description = get_field( 'description', $post->ID );
@@ -30,19 +28,16 @@ $description = get_field( 'description', $post->ID );
         <main class="site-main">
 
           <?php if ( have_posts() ) : ?>
-          
-          <div class="<?php echo esc_attr( $wrapper_class ); ?>">
             <?php while ( have_posts() ) : the_post(); 
               the_content(); 
               endwhile; ?>
-          </div>
   
 <?php endif; ?>
         </main>
       </div>
     </div>
-      <?php get_template_part( 'template-parts/mailing_list'); ?>
   </div>
+  <?php get_template_part( 'template-parts/mailing_list'); ?>
 </div>
 <?php
 

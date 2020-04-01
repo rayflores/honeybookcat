@@ -1,6 +1,6 @@
 /* container fix */
 .page-template-covid-19-hub-page-template .site-content {
-    padding: 0 0 90px;
+    padding: 0;
 }
 /* title and description */
 h1.hub-title-small {
@@ -45,7 +45,9 @@ ul#menu-covid-19-hub {
 .hub-posts {
     margin-top: 50px;
 }
+
 .hub-posts .posts-wrapper.grid-wrapper {
+    margin-bottom: 50px;
     position: relative;
 }
 .hub-posts article.post.post-grid {
@@ -63,12 +65,16 @@ ul#menu-covid-19-hub {
     font-size: 22px;
     text-decoration: underline;
 }
+/* featured post */
+.page-template-covid-19-hub-page-template .featured-block.big-featured {
+    margin: 0 0 75px;
+}
 /* subscribe */
 .page-template-covid-19-hub-page-template .subscribe {
     
 }
 .page-template-covid-19-hub-page-template .subscribe {
-    background: #ddd;
+    background: #eee;
     color: #777;
 }
 .page-template-covid-19-hub-page-template .subscribe h3.entry-title {
@@ -80,4 +86,15 @@ ul#menu-covid-19-hub {
 }
 .page-template-covid-19-hub-page-template .subscribe ::placeholder{
     color:#bbb;
+}
+/* event block */
+.featured-block.big-featured.event {
+    background: #eee;
+    padding: 20px;
+}
+.big-featured.event .featured-content p {
+    color: #222;
+}
+.big-featured.event .featured-post-single .img {
+    min-width: 50%;
 }

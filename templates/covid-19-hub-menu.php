@@ -13,11 +13,3 @@ $menu = get_field( 'hub_navigation_selector' );
 $args = array( 'menu' => $menu);
 wp_nav_menu( $args );
 ?>
-<style>
-  #menu-rising-tide {
-    list-style: none;
-  }
-    #menu-rising-tide li {
-        display: inline-block;
-    }
-</style>
