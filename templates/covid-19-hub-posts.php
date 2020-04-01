@@ -42,7 +42,7 @@ $query = get_posts( $args );
       foreach ( $query as $post ) :  setup_postdata( $post );
     ?>
      <div class="<?php echo esc_attr( $column_class ); ?>">
-       <article id="post-<?php echo $post->ID ?>" <?php post_class( 'post post-grid' ); ?> style="min-height: 485px;">
+       <article id="post-<?php echo $post->ID ?>" <?php post_class( 'post post-grid' ); ?>>
       <?php if ( has_post_thumbnail() && ! hummingbird_get_option( 'hummingbird_disable_post_image', false ) ) : ?>
         <div class="entry-media">
             <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" style="background:url('	<?=get_the_post_thumbnail_url($post->ID,array( 520,520 ) ); ?>') no-repeat;">
@@ -65,7 +65,7 @@ $query = get_posts( $args );
         </header>
 
         <div class="entry-content">
-          <?php custom_excerpt(11); ?>
+          <?php echo wp_trim_words( $post->post_content, 11, NULL ); ?>
         </div>
 
       <?php if ( get_post_type( $post->ID ) == 'post' ) : ?>
@@ -78,14 +78,14 @@ $query = get_posts( $args );
         </article>
      </div>
 <?php endforeach; ?>
-    </div>
   <?php 
       if ( $category_link ) : ?>
       <div class="category-link">
-          <a href="<?php echo esc_url( $category_link ); ?>"><?php echo $category_link_text; ?></a>
+          <a href="<?php echo esc_url( get_category_link( $category_link ) ); ?>"><?php echo $category_link_text; ?></a>
       </div>
       <?php endif; ?>
   <?php endif; ?>
 <?php wp_reset_query(); ?>
 <?php endif; ?>
+    </div>
 </div>

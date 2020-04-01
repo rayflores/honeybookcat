@@ -1,0 +1,83 @@
+/* container fix */
+.page-template-covid-19-hub-page-template .site-content {
+    padding: 0 0 90px;
+}
+/* title and description */
+h1.hub-title-small {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    width: 70%;
+    margin: 0 auto;
+}
+.hub-description {
+    margin: 10px auto 0;
+    text-align: center;
+    width: 60%;
+}
+/* menu block */
+.menu-covid-19-hub-container {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+ul#menu-covid-19-hub {
+    list-style: none;
+    display: inline-block;
+    margin: 0 auto;
+    padding-left: 0;
+    width: 80%;
+}
+#menu-covid-19-hub li {
+    margin: 0;
+    display:inline-block;
+}
+
+#menu-covid-19-hub li:not(:last-child) {
+    padding-right: 15px;
+}
+#menu-covid-19-hub li.menu-item a {
+    color: #bbb;
+    text-decoration: underline;
+}
+/* 3 Posts */
+.hub-posts {
+    margin-top: 50px;
+}
+.hub-posts .posts-wrapper.grid-wrapper {
+    position: relative;
+}
+.hub-posts article.post.post-grid {
+    min-height: 510px;
+}
+.category-link {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center; 
+}
+.category-link a {
+    color: #222;
+    font-size: 22px;
+    text-decoration: underline;
+}
+/* subscribe */
+.page-template-covid-19-hub-page-template .subscribe {
+    
+}
+.page-template-covid-19-hub-page-template .subscribe {
+    background: #ddd;
+    color: #777;
+}
+.page-template-covid-19-hub-page-template .subscribe h3.entry-title {
+    color: #001247;
+}
+.page-template-covid-19-hub-page-template .subscribe .ck_form.ck_naked input[type="text"], .page-template-covid-19-hub-page-template .subscribe .ck_form.ck_naked input[type="email"] {
+    color: #777;
+    border-bottom: 1px solid #aaa!important;
+}
+.page-template-covid-19-hub-page-template .subscribe ::placeholder{
+    color:#bbb;
+}

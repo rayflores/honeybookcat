@@ -43,6 +43,11 @@ class HB_Cat_Tmpl {
   var $settings;
   
   public function __construct() {
+    $this->templates = array();
+    add_filter( 'theme_page_templates', array( $this, 'add_new_template' ) );
+    add_filter( 'wp_insert_post_data', array( $this, 'register_project_templates' ) );
+    add_filter( 'template_include', array( $this, 'view_project_template') );
+    $this->templates = array( 'covid-19-hub-page-template.php' => 'COVID-19 Hub' );
     add_action( 'acf/init', array( $this, 'honeybook_register_blocks' ) );
     add_action( 'acf/include_field_types', array( $this, 'include_menu_selector_field' ) );
     add_action( 'acf/register_fields', array( $this, 'include_menu_selector_field' ) );
@@ -54,17 +59,7 @@ class HB_Cat_Tmpl {
   public function honeybook_register_blocks(){
     if ( ! function_exists( 'acf_register_block_type' ) )
       return;
-
-    acf_register_block_type( array(
-            'name' => 'covid-19-hub-header',
-            'title' => __( 'Covid-19 Hub Header', 'honeybook' ),
-            'render_template' => plugin_dir_path( __FILE__ ) . 'templates/covid-19-hub-header.php',
-            'category' => 'common',
-            'icon' => 'sos',
-            'mode' => 'auto',
-            'keywords' => array( 'covid', '19', 'header', 'hub' )
-        )
-    );
+    
     acf_register_block_type( array(
             'name' => 'covid-19-hub-posts',
             'title' => __( 'Covid-19 Hub Posts', 'honeybook' ),
@@ -86,19 +81,81 @@ class HB_Cat_Tmpl {
         )
     );
     acf_register_block_type( array(
+            'name' => 'covid-19-hub-featured-event',
+            'title' => __( 'Covid-19 Hub Featured Event', 'honeybook' ),
+            'render_template' => plugin_dir_path( __FILE__ ) . 'templates/covid-19-hub-featured-event.php',
+            'category' => 'common',
+            'icon' => 'sos',
+            'mode' => 'auto',
+            'keywords' => array( 'covid', '19', 'posts', 'featured', 'hub', 'event' )
+        )
+    );
+    acf_register_block_type( array(
             'name' => 'covid-19-hub-nav',
             'title' => __( 'Covid-19 Hub Menu', 'honeybook' ),
             'render_template' => plugin_dir_path( __FILE__ ) . 'templates/covid-19-hub-menu.php',
             'category' => 'common',
             'icon' => 'sos',
             'mode' => 'auto',
-            'keywords' => array( 'covid', '19', 'posts', 'featured', 'hub' )
+            'keywords' => array( 'covid', '19', 'posts', 'featured', 'hub' ),
         )
     );
     
   }
-  
+  public function add_new_template( $posts_templates ) {
+    $posts_templates = array_merge( $posts_templates, $this->templates );
+    return $posts_templates;
+  }
+  public function register_project_templates( $atts ) {
+    
+    $cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
+    
+    $templates = wp_get_theme()->get_page_templates();
+    if ( empty( $templates ) ) {
+      $templates = array();
+    }
+    
+    wp_cache_delete( $cache_key , 'themes');
+    
+    $templates = array_merge( $templates, $this->templates );
+
+    wp_cache_add( $cache_key, $templates, 'themes', 1800 );
+
+    return $atts;
+
+  }
+  public function view_project_template( $template ) {
+    global $post;
+
+    if ( ! $post ) {
+      return $template;
+    }
+
+    if ( !isset( $this->templates[get_post_meta(
+            $post->ID, '_wp_page_template', true
+        )] ) ) {
+      return $template;
+    }
+
+    $file = plugin_dir_path(__FILE__). 'page-template/' . get_post_meta(
+            $post->ID, '_wp_page_template', true
+        );
+
+    if ( file_exists( $file ) ) {
+      return $file;
+    } else {
+      echo $file;
+    }
+
+    return $template;
+
+  }
+  public function styles_scripts(){
+    wp_enqueue_style( 'covid-19-hub-styles', plugins_url('/css/covid-19-hub.css', __FILE__ ), array(), time() );
+  }
   public function hooks() {
+    
+    add_action( 'wp_enqueue_scripts', array( $this, 'styles_scripts' ) );
     
     if( function_exists('acf_add_local_field_group') ):
 

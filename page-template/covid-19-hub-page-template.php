@@ -8,7 +8,7 @@ $wrapper_class = 'posts-wrapper';
 $wrapper_class .= hummingbird_is_layout( 'grids' ) ? ' grid-wrapper' : '';
 $image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID),'full' )[0];
 $link = get_field('link');
-
+$description = get_field( 'description', $post->ID );
 ?>
 
 <?php get_header(); ?>
@@ -16,8 +16,8 @@ $link = get_field('link');
   <div class="container">
     <div class="pillar-box">
       <div class="pillar-box-content">
-        <h1 class="term-title-small"><?php the_title(); ?></h1>
-        <p class="pillar-description"><?php the_field('description') ?></p>
+        <h1 class="hub-title-small"><?php the_title(); ?></h1>
+        <p class="hub-description"><?php echo strip_tags( $description ); ?></p>
 
       </div>
     </div>
@@ -41,5 +41,9 @@ $link = get_field('link');
         </main>
       </div>
     </div>
+      <?php get_template_part( 'template-parts/mailing_list'); ?>
   </div>
 </div>
+<?php
+
+get_footer(); 
