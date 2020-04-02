@@ -43,7 +43,7 @@ $query = get_posts( $args );
     ?>
      <div class="<?php echo esc_attr( $column_class ); ?>">
        <article id="post-<?php echo $post->ID ?>" <?php post_class( 'post post-grid' ); ?>>
-      <?php if ( has_post_thumbnail() && ! hummingbird_get_option( 'hummingbird_disable_post_image', false ) ) : ?>
+       <?php if ( has_post_thumbnail( $post->ID ) ) : ?>
         <div class="entry-media">
             <a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" style="background:url('	<?=get_the_post_thumbnail_url($post->ID,array( 520,520 ) ); ?>') no-repeat;">
 
@@ -65,7 +65,7 @@ $query = get_posts( $args );
         </header>
 
         <div class="entry-content">
-          <?php echo wp_trim_words( $post->post_content, 11, NULL ); ?>
+          <p><?php echo wp_trim_words( $post->post_content, 11, NULL ); ?></p>
         </div>
 
       <?php if ( get_post_type( $post->ID ) == 'post' ) : ?>
