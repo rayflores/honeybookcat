@@ -1,13 +1,13 @@
-#Honeybook Category Template and Custom Blocks Plugin
-###A plugin built for Honeybook to create a custom page using a page template, custom gutenberg blocks and advanced custom fields.
-***
+=== Honeybook Category Template and Custom Blocks Plugin ===  
+=== A plugin built for Honeybook to create a custom page using a page template, custom gutenberg blocks and advanced custom fields. ===
+
 Author: Ray Flores  
 Tags: ACF, Gutenberg, Page Templates  
 Requires:  WP 5.3+, ACF 5.8+  
 Tested up to: 5.3.2  
 Requires PHP: 7.0+
 
-####Templates derived from within this plugin:  
+=== Templates derived from within this plugin: ===  
  - Covid-19 Hub Page Template
  - Covid-19 Hub Featured Post Gutenberg Block
  - Covid-19 Hub Featured Event Gutenberg Block
